@@ -1,0 +1,13 @@
+body {
+  padding-top: 3.5rem;
+}
+
+#imagem{
+	width: 400px;
+	vertical-align:top;
+	text-align: center;
+}
+
+h1{
+	font-family: Arial;
+}
