@@ -29,11 +29,11 @@
                     
                     if($verify==True){
                         $_SESSION['login']="correto";
-                        
+                        echo '<script>alert("Login Correto");</script>';
                     }
                     else{
                         $_SESSION['login']="incorreto";
-
+                        echo '<script>alert("Login Incorreto");</script>';
                     }
                     header("refresh:5;url=index.php");
                 }

@@ -1,4 +1,3 @@
-  
 <?php 
     $con=new mysqli("localhost","root","","filmes");
     if($con->connect_error!=0){
@@ -27,10 +26,10 @@
                 $stm->close();
             ?>
         <br>
-        <button> <a href="filmes_create.php">Adicionar</a></button><br><br>
-        <button> <a href="login.php">Login</a></button>
-        <button> <a href="register.php">Registar</a></button>
-        <button> <a href="listauser.php">Lista dos Utilizadores</a></button>
+        <a href="filmes_create.php">Adicionar livros</a><br>
+        <a href="login.php">Login</a><br>
+        <a href="register.php">Register</a><br>
+    <a href="listauser.php">Lista de utilizadores</a><br>
 
 
         </body>
