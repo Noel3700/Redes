@@ -11,16 +11,16 @@
     <html>
     <head>
     <meta charset="ISO-8859-1">
-    <title>Atores</title>
+    <title>Realizadores</title>
     </head>
     <body>
-    <h1>Atores</h1>
+    <h1>Realizadores</h1>
     <?php
-        $stm = $con->prepare('select * from atores');
+        $stm = $con->prepare('select * from realizadores');
         $stm->execute();
         $res=$stm->get_result();
         while($resultado = $res->fetch_assoc()){
-            echo '<a href="atores_show.php?ator='.$resultado['id_ator'].'">';
+            echo '<a href="realizadores_show.php?realizador='.$resultado['id_realizador'].'">';
             echo $resultado['nome'];
             echo '</a>';
             echo '<br>';
@@ -38,9 +38,9 @@
         $stm->close();
         ?>
          <br> <br>
-        <a href="index.php">Filmes</a>
-         
-        <a href="atores_create.php">Adicionar Atores</a>
+         <a href="index.php">Filmes</a>
+         <a href="atores_index.php">Atores</a>
+        <a href="realizadores_create.php">Adicionar Realizadores</a>
         <a href="login.php">Login</a>
         <a href="register.php">Register</a>
         <a href="listauser.php">Lista de utilizadores</a>

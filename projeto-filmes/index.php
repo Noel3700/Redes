@@ -30,6 +30,16 @@ session_start();
                     echo '<br>';
                 }
                 $stm->close();
+                echo "<br>";
+        $stm = $con->prepare('select * from utilizadores');
+        $stm->execute();
+        $res=$stm->get_result();
+        while($resultado = $res->fetch_assoc()){
+            if($resultado['id'] == $_SESSION['id_user']){
+                echo '<a href="utilizador_edit.php?user='.$resultado['id'].'">Utilizador</a><br>';
+            }
+        }
+        $stm->close();
             ?>
         <br>
         <a href="filmes_create.php">Adicionar livros</a><br>
@@ -37,6 +47,7 @@ session_start();
         <a href="register.php">Register</a><br>
         <a href="listauser.php">Lista de utilizadores</a><br>
         <a href="atores.php">Atores</a><br>
+        <a href="realizadores_index.php">Realizadores</a><br>
 
         </body>
         </html>
