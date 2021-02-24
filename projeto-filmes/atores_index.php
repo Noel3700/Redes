@@ -13,7 +13,7 @@
     <meta charset="ISO-8859-1">
     <title>Atores</title>
     </head>
-    <body>
+    <body style="background-color:grey;color:white">
     <h1>Atores</h1>
     <?php
         $stm = $con->prepare('select * from atores');
@@ -40,10 +40,10 @@
          <br> <br>
         <a href="index.php">Filmes</a>
          
-        <a href="atores_create.php">Adicionar Atores</a>
-        <a href="login.php">Login</a>
-        <a href="register.php">Register</a>
-        <a href="listauser.php">Lista de utilizadores</a>
+        <a href="atores_create.php"style="color:white">Adicionar Atores</a>
+        <a href="login.php"style="color:white">Login</a>
+        <a href="register.php"style="color:white">Register</a>
+        <a href="listauser.php"style="color:white">Lista de utilizadores</a>
     
         <br>
     </body>

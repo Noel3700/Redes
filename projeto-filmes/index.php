@@ -17,7 +17,7 @@ session_start();
         <meta charset="ISO-8859-1">
         <title>filmes</title>
         </head>
-        <body>
+        <body style="background-color:grey;color:white">
         <h1> Lista de filmes</h1>
             <?php
                 $stm=$con->prepare('select * from filmes');
@@ -42,12 +42,12 @@ session_start();
         $stm->close();
             ?>
         <br>
-        <a href="filmes_create.php">Adicionar livros</a><br>
-        <a href="login.php">Login</a><br>
-        <a href="register.php">Register</a><br>
-        <a href="listauser.php">Lista de utilizadores</a><br>
-        <a href="atores.php">Atores</a><br>
-        <a href="realizadores_index.php">Realizadores</a><br>
+        <a href="filmes_create.php" style="color:white">Adicionar livros</a><br>
+        <a href="login.php"style="color:white">Login</a><br>
+        <a href="register.php"style="color:white">Register</a><br>
+        <a href="listauser.php"style="color:white">Lista de utilizadores</a><br>
+        <a href="atores.php"style="color:white">Atores</a><br>
+        <a href="realizadores_index.php"style="color:white">Realizadores</a><br>
 
         </body>
         </html>

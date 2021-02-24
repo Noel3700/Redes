@@ -1,87 +1,84 @@
-<?php 
-session_start()
-    if($_SERVER['REQUEST_METHOD']=="GET"){
-        if(!isset($_GET['ator']) || !is_numeric($_GET['ator'])){
-
-            echo '<script>alert("Erro ao abrir o Ator");</script>';
-            echo 'Aguarde um momento.A reencaminhar pagina';
-            header("refresh:5; url=atores_index.php");
-            exit();
-        }
-        $idAtor=$_GET['ator'];
-        $con=new mysqli("localhost","root","","filmes");
-
-        if($con->connect_error!=0){
-
-            echo 'Ocorreu um erro no acesso a base de dados <br>'.$con->connect_error;
-            exit();
-        }else{
-         if(!isset($_SESSION['login'])){
-            $_SESSION['login']="incorreto";
-        }
-        if($_SESSION['login']=="correto"){
-        
-        else{
-            $sql='select * from atores where id_ator=?';
-            $stm=$con->prepare($sql);
-            if($stm!=false){
-                $stm->bind_param('i',$idAtor);
-                $stm->execute();
-                $res=$stm->get_result();
-                $ator=$res->fetch_assoc();
-                $stm->close();
+<?php
+session_start();
+    if(!isset($_SESSION['login'])){
+        $_SESSION['login']="incorreto";
+    }
+    if($_SESSION['login']== "correto" && isset($_SESSION['login'])){
+        if($_SERVER['REQUEST_METHOD']=="GET"){
+            if(!isset($_GET['ator']) || !is_numeric($_GET['ator'])){
+                echo '<script>alert("Erro ao abrir ator");</script>';
+                echo 'Aguarde um momento. A reencaminhar página';
+                header("refresh:5;url=index.php");
+                exit();
+            }
+            $idAtor=$_GET['ator'];
+            $con = new mysqli("localhost","root","","filmes");
+    
+            if($con->connect_errno!=0){
+                echo 'Occoreu um erro no acesso à base de dados. <br>'.$con->connect_error;
+                exit();
             }
             else{
-                echo '<br>';
-                echo ($con->error);
-                echo'<br>';
-                echo"Aguarde um momento.A reencaminhar pagina";
-                echo'<br>';
-                header("refresh:5; url=atores_index.php");
+                $sql = 'select * from atores where id_ator = ?';
+                $stm = $con->prepare($sql);
+                if($stm!=false){
+                    $stm->bind_param('i',$idAtor);
+                    $stm->execute();
+                    $res=$stm->get_result();
+                    $livro = $res->fetch_assoc();
+                    $stm->close();
+                }
+                else{
+                    echo '<br>';
+                    echo ($con->error);
+                    echo '<br>';
+                    echo "Aguarde um momento.A reencaminhar página";
+                    echo '<br>';
+                    header("refresh:5; url=index.php");
+                }
             }
         }
+        ?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Detalhes</title>
+</head>
+<body>
+<h1>Detalhes do filme</h1>
+<?php
+    if(isset($livro)){
+        echo '<br>';
+        echo "Nome: ".$livro['nome'];
+        echo '<br>';
+        echo "Data Nascimento: ".$livro['data_nascimento'];
+        echo '<br>';
+        echo "Nacionalidade: ".$livro['nacionalidade'];
+        echo '<br>';
+    }
+    else{
+        echo '<h2>Parece que o filme selecionado não existe. <br>Confirme a sua seleção.</h2>';
+    }
+    echo '<br>';
+    echo '<a href="atores_edit.php?ator='.$livro['id_ator'].'">Editar Ator</a><br>';
+        echo '<a href="atores_delete.php?ator='.$livro['id_ator'].'">Eliminar Ator</a>';
+?>
+<?php
+    }
+    else{
+        echo "Precisa estar logado.<br>";
+        echo "A ser redirecionado para a pagina de login";
+        header("refresh:5; url=login.php");
     }
 ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="utf-8">
-    <title>Detalhes</title>
-    <body>
-    <h1>Detalhes do Ator</h1>
-
-    <?php
-        if(isset($ator)){
-            echo '<br><br>';
-            echo "Nome do Ator: ";
-            echo $ator['nome'];
-            echo '<br><br>';
-            echo "Data Nascimento: ";
-            echo $ator['data_nascimento'];
-            echo '<br><br>';
-            echo "Nacionalidade: ";
-            echo $ator['nacionalidade'];
-            echo '<br><br>';
-           
-            echo '<a href="atores_edit.php?ator='.$ator['id_ator']. '">Editar</a><br>';
-            echo '<a href="atores_delete.php?ator='.$ator['id_ator']. '">Eliminar</a>';
-        }
-        else{
-            echo '<h2>O Ator selecionado nao exite</h2>';
-        }
-       
-    ?>
-  
-    </body>
-    </html>
-
-    <?php 
-        }
-        else{
-            echo 'Para entrar nesta página necessita de efetuar <a href="login.php">login</a> ';
-            header('refresh: 2; url= login.php');
-        }
-
- }
-        
-        ?>
+</body>
+</html>
+<br><br>
+        <a href="index.php" >Filmes</a>
+        <a href="atores_index.php" >Atores</a>
+        <a href="realizadores_index.php" >Realizadores</a>
+<br> <br>
+<a href="login.php" >Login</a>
+<a href="register.php" >Register</a>
+<a href="listauser.php">ListadeUtilizadores</a>
