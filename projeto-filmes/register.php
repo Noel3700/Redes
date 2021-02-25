@@ -2,7 +2,7 @@
 <html>
 <head>
 </head>
-<body>
+<body style="background-color:grey;color:white">
 <h1>Login</h1>
 <form method="post" action="processa_register.php">
 <label>Nome de utilizador</label><input type="text" name="user_name" required><br>
